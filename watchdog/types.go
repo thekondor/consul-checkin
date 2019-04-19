@@ -18,6 +18,8 @@ func (self RetryDecision) bool() bool {
 	}
 }
 
-type OnConnectionFailedFunc func(attempt uint, err error) RetryDecision
-type OnConnectionLostFunc func(err error) RetryDecision
-type OnConnectionRecoveredFunc func()
+type (
+	OnConnectionFailedFunc    func(attempt uint, err error) RetryDecision
+	OnConnectionLostFunc      func(err error) RetryDecision
+	OnConnectionRecoveredFunc func()
+)

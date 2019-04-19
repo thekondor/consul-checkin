@@ -1,16 +1,16 @@
 # consul-checkin
 
-> This is a pre-early draft implementation of Go/Golang library to register Golang services automatically in [Hashicorp Consul](https://www.consul.io/). This one works but definitely expected to be unstable as well as provides unclear API which is a subject to change.
+> This is a dummy draft implementation of Go/Golang library to register Golang services automatically within [Hashicorp Consul](https://www.consul.io/). This one works but definitely expected to be unstable as well as provides unclear API which is a subject to change. The library is made public available since it became dependency for already deployed production services.
 
 ## Rationale
 
-HashiCorp [Consul's API](https://godoc.org/github.com/hashicorp/consul/api) allows to register service in a simple manner:
+HashiCorp [Consul's API](https://godoc.org/github.com/hashicorp/consul/api) allows to register service in a simple manner. Due to the nature the API is limited:
 
 1. as soon as service is registered on Consul's agent, nothing happens when Consul Agent become unavailable for some time due to any reason; i.e. the service wouldn't be re-registered again (especially when Consul cluster goes down).
 
 2. when a Golang service starts before Consul Agent is available, it has to watch its availability to register itself using API above provided.
 
-`consul-checkin` is a Go/Golang library to watch connection to a Consul agent and register service as soon as Consul agent becomes available; or re-register when a connection to a Consul agent is lost.
+`consul-checkin` is a Go/Golang library to watch connection to a Consul agent and register service as soon as Consul agent becomes available; or re-register when a connection to a Consul agent is lost. **Such strategy allows microservices to be deployed independently of Consul Agent's state**.
 
 ## Usage
 
